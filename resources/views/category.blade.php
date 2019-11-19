@@ -108,12 +108,10 @@
 								<!-- /ARTICLE -->
 							</div>
 							<!-- /Column 1 -->
-							
-                            @endforeach
-							{{ $other_posts->links('vendor.pagination.blog') }}
-							
+                            @endforeach	
 						</div>
 						<!-- /row -->
+						{{ $other_posts->links('vendor.pagination.blog') }}
 					</div>
 					<!-- /Main Column -->
 				</div>
