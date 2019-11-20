@@ -40,9 +40,7 @@
 			<!-- Center Header -->
 			<div id="center-header">
 				<div class="container">
-					<div class="header-logo">
-						<a href="#" class="logo"><img src="{{ asset('./img/edited.png') }}" alt=""></a>
-					</div>
+					<h1 class="logo text-center" style="font-family:Comic Sans MS;">Mwangaza wa neno fm</h1>
 				</div>
 			</div>
 			<!-- /Center Header -->
