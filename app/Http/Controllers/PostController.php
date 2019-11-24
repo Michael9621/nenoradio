@@ -42,12 +42,13 @@ class PostController extends Controller
         $featured_new_name = time().$featured->getClientOriginalName();
 
         $featured->move('uploads/posts', $featured_new_name);
-
+        
         $post = Post::create([
             "title" => $request->title,
             "featured_image" => 'uploads/posts/'.$featured_new_name,
             "category_id" => $request->category,
             "content"=> $request->content,
+            "draft" => $request->draft,
             "slug"=>str_slug($request->title)
 
         ]);

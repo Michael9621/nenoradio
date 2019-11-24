@@ -11,6 +11,7 @@
     <link href="{{ asset('../assets/vendor/fonts/circular-std/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('../assets/libs/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('../assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
+    <link rel="stylesheet" href="{{ asset ('assets/vendor/summernote/css/summernote-bs4.css') }}">
 </head>
 
 <body>
@@ -23,7 +24,7 @@
         <!-- ============================================================== -->
          <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="../index.html">Mwangaza Radio</a>
+                <a class="navbar-brand" href="{{ route('index') }}">Mwangaza Radio</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -36,15 +37,21 @@
                         </li>
                         
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">welcome james :)</a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">John Abraham</h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
                     </ul>
@@ -118,10 +125,10 @@
                                 <div id="submenu-1" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="cards.html">view users <span class="badge badge-secondary">New</span></a>
+                                            <a class="nav-link" href="{{ route('view_users') }}">view users <span class="badge badge-secondary">New</span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="general.html">create users</a>
+                                            <a class="nav-link" href="{{ route('create_user') }}">create users</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -131,9 +138,8 @@
                 </nav>
             </div>
             </div>
-
-                @yield('content')
             
+                @yield('content')
                 <!-- ============================================================== -->
                 <!-- footer -->
                 <!-- ============================================================== -->
@@ -160,6 +166,15 @@
     <script src="{{ asset('../assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('../assets/vendor/slimscroll/jquery.slimscroll.js') }}"></script>
     <script src="{{ asset('../assets/libs/js/main-js.js') }}"></script>
+    <script src="{{ asset ('assets/vendor/summernote/js/summernote-bs4.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 300
+
+            });
+        });
+    </script>
 </body>
  
 </html>

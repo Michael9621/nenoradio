@@ -3,80 +3,7 @@
 	@section('content')
 		<!-- Owl Carousel 1 -->
 		<div id="owl-carousel-1" class="owl-carousel owl-theme center-owl-nav">
-			<!-- ARTICLE -->
-			<article class="article thumb-article">
-				<div class="article-img">
-					<img src="{{$first_post->featured_image}}" alt="{{$first_post->featured_image}}">
-				</div>
-				<div class="article-body">
-					<ul class="article-info">
-						<li class="article-category"><a href="#">{{ $first_post->category->name }}</a></li>
-						<li class="article-type"><i class="fa fa-camera"></i></li>
-					</ul>
-					<h2 class="article-title"><a href="{{ route('single_post', ['slug' => $first_post->slug])}}">{{ $first_post->title }}</a></h2>
-					<ul class="article-meta">
-						<li><i class="fa fa-clock-o"></i>{{ $first_post->created_at->toFormattedDateString()}}</li>
-						<li><i class="fa fa-comments"></i> 33</li>
-					</ul>
-				</div>
-			</article>
-			<!-- /ARTICLE -->
-			
-			<!-- ARTICLE -->
-			<article class="article thumb-article">
-				<div class="article-img">
-					<img src="{{ $second_post->featured_image}}" alt="">
-				</div>
-				<div class="article-body">
-					<ul class="article-info">
-						<li class="article-category"><a href="#">{{ $second_post->category->name}}</a></li>
-						<li class="article-type"><i class="fa fa-file-text"></i></li>
-					</ul>
-					<h2 class="article-title"><a href="#">{{ $second_post->title}}</a></h2>
-					<ul class="article-meta">
-						<li><i class="fa fa-clock-o"></i>{{ $second_post->created_at->toFormattedDateString()}}</li>
-						<li><i class="fa fa-comments"></i> 33</li>
-					</ul>
-				</div>
-			</article>
-			<!-- /ARTICLE -->
-			
-			<!-- ARTICLE -->
-			<article class="article thumb-article">
-				<div class="article-img">
-					<img src="{{ $third_post->featured_image}}" alt="">
-				</div>
-				<div class="article-body">
-					<ul class="article-info">
-						<li class="article-category"><a href="#">{{ $third_post->category->name}}</a></li>
-						<li class="article-type"><i class="fa fa-camera"></i></li>
-					</ul>
-					<h2 class="article-title"><a href="#">{{ $third_post->title}}</a></h2>
-					<ul class="article-meta">
-						<li><i class="fa fa-clock-o"></i>{{ $third_post->created_at->toFormattedDateString()}}</li>
-						<li><i class="fa fa-comments"></i> 33</li>
-					</ul>
-				</div>
-			</article>
-			<!-- /ARTICLE -->
-			<!-- ARTICLE -->
-			<article class="article thumb-article">
-				<div class="article-img">
-					<img src="{{ $fourth_post->featured_image}}" alt="">
-				</div>
-				<div class="article-body">
-					<ul class="article-info">
-						<li class="article-category"><a href="#">{{ $fourth_post->category->name}}</a></li>
-						<li class="article-type"><i class="fa fa-camera"></i></li>
-					</ul>
-					<h2 class="article-title"><a href="#">{{ $fourth_post->title}}</a></h2>
-					<ul class="article-meta">
-						<li><i class="fa fa-clock-o"></i>{{ $fourth_post->created_at->toFormattedDateString()}}</li>
-						<li><i class="fa fa-comments"></i> 33</li>
-					</ul>
-				</div>
-			</article>
-			<!-- /ARTICLE -->
+		
 		</div>
 		<!-- /Owl Carousel 1 -->
 		
@@ -193,6 +120,7 @@
 			<div class="row">
 				<!-- Column 1 -->
 				<div class="col-md-6 col-sm-6">
+					@if($second_category->posts->count() > 0)
 					<!-- section title -->
 					<div class="section-title">
 						<h2 class="title">{{ $second_category->name }}</h2>
@@ -239,11 +167,13 @@
 					</article>
 					<!-- /ARTICLE -->
 					@endforeach
+					@endif
 				</div>
 				<!-- /Column 1 -->
 				
 				<!-- Column 2 -->
 				<div class="col-md-6 col-sm-6">
+				@if($third_category->posts->count() > 0)
 					<!-- section title -->
 					<div class="section-title">
 						<h2 class="title">{{ $third_category->name }}</h2>
@@ -271,7 +201,7 @@
 					</article>
 					<!-- /ARTICLE -->
 					@endforeach
-					
+				
 					@foreach($third_category->posts->sortKeysDesc()->slice(1)->take(2) as $post)
 					<!-- ARTICLE -->
 					<article class="article widget-article">
@@ -290,6 +220,7 @@
 					</article>
 					<!-- /ARTICLE -->
 					@endforeach
+				@endif
 				</div>
 				<!-- /Column 2 -->
 			</div>

@@ -100,31 +100,35 @@
 						
 						<!-- row -->
 						<div class="row">
-						 	@foreach($related_posts->sortKeysDesc()->take(4) as $r_post)
-							<!-- Column 1 -->
-							<div class="col-md-3 col-sm-6">
-								<!-- ARTICLE -->
-								<article class="article">
-									<div class="article-img">
-										<a href="#">
-											<img src="{{ $r_post->featured_image}}" alt="">
-										</a>
-										<ul class="article-info">
-											<li class="article-type"><i class="fa fa-camera"></i></li>
-										</ul>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="{{ route('single_post', ['slug'=> $r_post->slug]) }}">{{ $r_post->title }}</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i>{{ $r_post->created_at->toFormattedDateString()}}</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-							</div>
-							<!-- /Column 1 -->
-							@endforeach
+							@if($related_posts->count() > 0)
+								@foreach($related_posts->sortKeysDesc()->take(4) as $r_post)
+								<!-- Column 1 -->
+								<div class="col-md-3 col-sm-6">
+									<!-- ARTICLE -->
+									<article class="article">
+										<div class="article-img">
+											<a href="#">
+												<img src="{{ $r_post->featured_image}}" alt="">
+											</a>
+											<ul class="article-info">
+												<li class="article-type"><i class="fa fa-camera"></i></li>
+											</ul>
+										</div>
+										<div class="article-body">
+											<h4 class="article-title"><a href="{{ route('single_post', ['slug'=> $r_post->slug]) }}">{{ $r_post->title }}</a></h4>
+											<ul class="article-meta">
+												<li><i class="fa fa-clock-o"></i>{{ $r_post->created_at->toFormattedDateString()}}</li>
+												<li><i class="fa fa-comments"></i> 33</li>
+											</ul>
+										</div>
+									</article>
+									<!-- /ARTICLE -->
+								</div>
+								<!-- /Column 1 -->
+								@endforeach
+							@else
+								<p>no posts yet</p>
+							@endif
 						</div>
 						<!-- /row -->
 					</div>

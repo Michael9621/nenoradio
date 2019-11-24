@@ -9,7 +9,7 @@ class Post extends Model
 {
     use SoftDeletes;
 
-	protected $fillable=['title','featured_image','category_id','content', 'slug'];
+	protected $fillable=['title','featured_image','category_id','content', 'slug', 'draft'];
 
 	protected $dates = ['deleted_at'];
 
