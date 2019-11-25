@@ -14,6 +14,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+
+        $this->middleware('admin');
+        
+    }
+
     public function index()
     {
         return view('manage.users.view')->with('users', User::paginate(10));
@@ -109,5 +115,23 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function makeAdmin($id){
+        $user = User::find($id);
+        $user->admin = 1;
+        $user->save();
+
+        return redirect()->route('view_users');
+
+    }
+
+    public function removeAdmin($id){
+        $user = User::find($id);
+        $user->admin = 0;
+        $user->save();
+
+        return redirect()->route('view_users');
+
     }
 }

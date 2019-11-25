@@ -97,42 +97,45 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('create_post') }}">create posts</a>
                             </li>
+                            
+                            @if(Auth::user()->admin)
+                                <li class="nav-divider">
+                                    category
+                                </li>
 
-                            <li class="nav-divider">
-                                category
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2">manage categories</a>
+                                    <div id="submenu-2" class="collapse submenu" style="">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('view_category')}}">view categories<span class="badge badge-secondary">New</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('create_category')}}">create categories</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2">manage categories</a>
-                                <div id="submenu-2" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('view_category')}}">view categories<span class="badge badge-secondary">New</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('create_category')}}">create categories</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                                <li class="nav-divider">
+                                    manage users
+                                </li>
 
-                            <li class="nav-divider">
-                                manage users
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-2">manage users</a>
+                                    <div id="submenu-1" class="collapse submenu" style="">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('view_users') }}">view users <span class="badge badge-secondary">New</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('create_user') }}">create users</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            @endif
 
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-2">manage users</a>
-                                <div id="submenu-1" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('view_users') }}">view users <span class="badge badge-secondary">New</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('create_user') }}">create users</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </nav>

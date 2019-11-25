@@ -34,6 +34,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Name</th>
+                                                    <th>Role</th>
                                                     <th>Edit</th>
                                                     <th>Delete</th>
                                                 </tr>
@@ -43,7 +44,12 @@
                                                     @foreach($users as $user)
                                                     <tr>
                                                         <td>{{ $user->name }}</td>
-                                                        @if(Auth::user()->id != $user->id)
+                                                        @if($user->admin)
+                                                            <td><a href="{{route('remove_admin', ['id' => $user->id] )}}" class="btn btn-success btn-sm">remove admin</a></td>
+                                                        @else
+                                                            <td><a href="{{route('make_admin', ['id' => $user->id] )}}" class="btn btn-success btn-sm">make admin</a></td>
+                                                        @endif
+                                                        @if(Auth::user()->id != $user->id) 
                                                             <td> <a href="{{route('edit_user', ['id' => $user->id] )}}" class="btn btn-success btn-sm">edit</a></td>
                                                             <td> <a href="{{ route('delete_user', ['id' => $user->id ]) }}" class="btn btn-danger btn-sm">delete</a></td>
                                                         @endif

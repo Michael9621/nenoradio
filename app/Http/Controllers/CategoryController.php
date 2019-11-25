@@ -12,6 +12,12 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+
+        $this->middleware('admin');
+        
+    }
+
     public function index()
     {
         return view('manage.categories.view')->with('categories', Category::paginate(10));

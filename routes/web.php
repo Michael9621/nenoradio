@@ -51,5 +51,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/edit_user/{id}', 'UserController@edit')->name('edit_user');
     Route::post('/update_user/{id}', 'UserController@update')->name('update_user');
     Route::get('/delete_user/{id}', 'UserController@destroy')->name('delete_user');
+    Route::get('/make_admin/{id}', 'UserController@makeAdmin')->name('make_admin')->middleware('admin');
+    Route::get('/remove_admin/{id}', 'UserController@removeAdmin')->name('remove_admin');
 
 });
