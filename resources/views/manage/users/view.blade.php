@@ -44,8 +44,10 @@
                                                     @foreach($users as $user)
                                                     <tr>
                                                         <td>{{ $user->name }}</td>
-                                                        <td> <a href="{{route('edit_user', ['id' => $user->id] )}}" class="btn btn-success btn-sm">edit</a></td>
-                                                        <td> <a href="{{ route('delete_user', ['id' => $user->id ]) }}" class="btn btn-danger btn-sm">delete</a></td>
+                                                        @if(Auth::user()->id != $user->id)
+                                                            <td> <a href="{{route('edit_user', ['id' => $user->id] )}}" class="btn btn-success btn-sm">edit</a></td>
+                                                            <td> <a href="{{ route('delete_user', ['id' => $user->id ]) }}" class="btn btn-danger btn-sm">delete</a></td>
+                                                        @endif
                                                     </tr>
                                                     @endforeach
                         
@@ -57,6 +59,7 @@
                                                 </tr>                    
                                             </tbody>
                                         </table>
+                                        {{ $users->links() }}
                                     </div>
                                 </div>
                             </div>

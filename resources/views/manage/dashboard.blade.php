@@ -67,6 +67,47 @@
                         </div>
                     </div>
                 </div>
+            
+                <div class="row">
+                    <div class="col-xl-12">
+                        
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table class="table table-borderless first">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th>user</th>
+                                                    <th>number of posts</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @if($users->count() > 0)
+                                                @foreach($users as $user)
+                                                <tr class="text-center">
+                                                    <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->posts()->count() }}</td>
+                                                </tr>
+                                                
+                                            @endforeach
+                                            
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td><p class="text-center">nothing to show :(</p></td>
+                                                </tr>
+                                            @endif                    
+                                            </tbody>
+                                            
+                                        </table>
+                                        {{ $users->links() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

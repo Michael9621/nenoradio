@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('manage.posts.view')->with('posts', Post::all());
+        return view('manage.posts.view')->with('posts', Post::paginate(10));
     }
 
     /**
@@ -49,6 +49,7 @@ class PostController extends Controller
             "category_id" => $request->category,
             "content"=> $request->content,
             "draft" => $request->draft,
+            "user_id" => Auth::user()->id,
             "slug"=>str_slug($request->title)
 
         ]);
@@ -101,6 +102,7 @@ class PostController extends Controller
 
         $post->title = $request->title;
         $post->category_id = $request->category;
+        $post->user_id = Auth::user()->id;
         $post->content = $request->content;
         $post->save();
 

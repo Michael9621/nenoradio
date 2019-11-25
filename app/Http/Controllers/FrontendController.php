@@ -48,6 +48,7 @@ class FrontendController extends Controller
                     ->with('published_posts', Post::where('draft',1)->count())
                     ->with('all_categories', Category::all()->count())
                     ->with('all_users', User::all()->count())
-                    ->with('all_trashed', Post::onlyTrashed()->count());
+                    ->with('all_trashed', Post::onlyTrashed()->count())
+                    ->with('users', User::paginate(10));
     }
 }
