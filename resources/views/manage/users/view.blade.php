@@ -1,7 +1,6 @@
 @extends('manage.index')
 
 @section('content')
-
     <div class="dashboard-wrapper">
         <div class="dashboard-ecommerce">
             <div class="container-fluid dashboard-content ">
@@ -70,5 +69,4 @@
         </div>
        
     </div>
-
 @endsection
