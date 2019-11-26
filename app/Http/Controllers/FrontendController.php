@@ -49,6 +49,6 @@ class FrontendController extends Controller
                     ->with('all_categories', Category::all()->count())
                     ->with('all_users', User::all()->count())
                     ->with('all_trashed', Post::onlyTrashed()->count())
-                    ->with('users', User::paginate(10));
+                    ->with('users', User::where('admin',0)->paginate(10));
     }
 }

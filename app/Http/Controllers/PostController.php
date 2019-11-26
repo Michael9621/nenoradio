@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
+use Auth;
+use Illuminate\Support\Facades\File;
 
 
 class PostController extends Controller
@@ -94,6 +96,9 @@ class PostController extends Controller
 
         if ($request->hasFile('featured'))
         {
+            if(file_exists($post->featured_image)){
+                unlink($post->featured_image);
+            }
             $featured= $request->featured;
             $featured_new_name = time() . $featured->getClientOriginalName();
             $featured->move('uploads/posts', $featured_new_name);
@@ -135,6 +140,10 @@ class PostController extends Controller
 
     Public function kill($id){
       $post  = Post::withTrashed()->where('id',$id)->first();
+ 
+      if(file_exists($post->featured_image)){
+          unlink($post->featured_image);
+      }
       $post->forceDelete();
       return redirect()->route('trashed_posts');
     }
