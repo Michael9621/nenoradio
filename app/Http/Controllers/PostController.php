@@ -140,11 +140,11 @@ class PostController extends Controller
 
     Public function kill($id){
       $post  = Post::withTrashed()->where('id',$id)->first();
- 
+      //dd($post->featured_image);
       if(file_exists($post->featured_image)){
           unlink($post->featured_image);
       }
-      $post->forceDelete();
-      return redirect()->route('trashed_posts');
+      //$post->forceDelete();
+      //return redirect()->route('trashed_posts');
     }
 }
