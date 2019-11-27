@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use Session;
 
 class UserController extends Controller
 {
@@ -55,6 +56,8 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        Session::flash('success', 'user created successfully');
+
         return redirect()->route('view_users');
     }
 
@@ -101,9 +104,9 @@ class UserController extends Controller
 
         $user->save();
 
+        Session::flash('success', 'user updated successfully');
+
         return redirect()->route('view_users');
-
-
     }
 
     /**
@@ -114,13 +117,18 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        Session::flash('success', 'user deleted successfully');
+        return redirect()->route('view_users');
     }
 
     public function makeAdmin($id){
         $user = User::find($id);
         $user->admin = 1;
         $user->save();
+
+        Session::flash('info', 'admin created successfully');
 
         return redirect()->route('view_users');
 
@@ -130,6 +138,8 @@ class UserController extends Controller
         $user = User::find($id);
         $user->admin = 0;
         $user->save();
+
+        Session::flash('info', 'admin previlages removed successfully');
 
         return redirect()->route('view_users');
 

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('../assets/libs/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('../assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
     <link rel="stylesheet" href="{{ asset ('assets/vendor/summernote/css/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
 </head>
 
 <body>
@@ -166,6 +167,7 @@
     <script src="{{ asset('../assets/vendor/slimscroll/jquery.slimscroll.js') }}"></script>
     <script src="{{ asset('../assets/libs/js/main-js.js') }}"></script>
     <script src="{{ asset ('assets/vendor/summernote/js/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#summernote').summernote({
@@ -173,6 +175,16 @@
 
             });
         });
+
+        @if(Session::has('success'))
+            toastr.success("{{Session::get('success')}}")
+        @endif
+        @if(Session::has('info'))
+            toastr.info("{{Session::get('info')}}")
+        @endif
+        @if(Session::has('warning'))
+            toastr.warning("{{Session::get('warning')}}")
+        @endif
     </script>
 </body>
  

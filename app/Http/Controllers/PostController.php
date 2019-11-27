@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
 use Auth;
-use Illuminate\Support\Facades\File;
+use Session;
 
 
 class PostController extends Controller
@@ -28,7 +28,13 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('manage.posts.create')->with('categories', Category::all());
+        if(Category::count() > 0){
+            return view('manage.posts.create')->with('categories', Category::all());
+        }else{
+            Session::flash('warning', 'posts cannot be created, categories missing');
+            return redirect()->back();
+        }
+        
     }
 
     /**
@@ -55,7 +61,9 @@ class PostController extends Controller
             "slug"=>str_slug($request->title)
 
         ]);
-        
+
+        Session::flash('success', 'you created a new post');
+
         return redirect()->route('view_posts');
     }
 
@@ -111,6 +119,8 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->save();
 
+        Session::flash('success', 'you updated a post');
+
         return redirect()->route('view_posts');
     }
 
@@ -124,6 +134,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
+        Session::flash('success', 'you trashed a post');
         return redirect()->route('view_posts');
     }
 
@@ -135,6 +146,7 @@ class PostController extends Controller
     public function restore($id){
        $post  = Post::withTrashed()->where('id',$id)->first();
        $post->restore(); 
+       Session::flash('success', 'you restored post');
        return redirect()->route('view_posts');
     }
 
@@ -144,7 +156,8 @@ class PostController extends Controller
       if(file_exists($post->featured_image)){
           unlink($post->featured_image);
       }
-      //$post->forceDelete();
-      //return redirect()->route('trashed_posts');
+      $post->forceDelete();
+      Session::flash('success', 'you deleted a post');
+      return redirect()->route('trashed_posts');
     }
 }

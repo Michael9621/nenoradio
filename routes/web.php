@@ -31,11 +31,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/store_post', 'PostController@store')->name('store_post');
     Route::get('/edit_post/{id}', 'PostController@edit')->name('edit_post');
     Route::post('/update_post/{id}', 'PostController@update')->name('update_post');
-    Route::get('/delete_post/{id}', 'PostController@destroy')->name('delete_post');
     Route::get('/trashed_posts', 'PostController@trashed')->name('trashed_posts');
-    Route::get('/kill_post/{id}', 'PostController@kill')->name('kill_post');
-    Route::get('/restore_post/{id}', 'PostController@restore')->name('restore_post');
-
+    
     //category routes
     Route::get('/view_category', 'CategoryController@index')->name('view_category');
     Route::get('/create_category', 'CategoryController@create')->name('create_category');
@@ -51,7 +48,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/edit_user/{id}', 'UserController@edit')->name('edit_user');
     Route::post('/update_user/{id}', 'UserController@update')->name('update_user');
     Route::get('/delete_user/{id}', 'UserController@destroy')->name('delete_user');
-    Route::get('/make_admin/{id}', 'UserController@makeAdmin')->name('make_admin')->middleware('admin');
+    Route::get('/make_admin/{id}', 'UserController@makeAdmin')->name('make_admin');
     Route::get('/remove_admin/{id}', 'UserController@removeAdmin')->name('remove_admin');
+
+    //admin routes--group
+    Route::group(['middleware' => 'admin'], function(){
+        Route::get('/delete_post/{id}', 'PostController@destroy')->name('delete_post');
+        Route::get('/kill_post/{id}', 'PostController@kill')->name('kill_post');
+        Route::get('/restore_post/{id}', 'PostController@restore')->name('restore_post');
+
+    });
 
 });
