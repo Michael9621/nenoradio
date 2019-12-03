@@ -1,10 +1,12 @@
 <?php
 
 //front end
-Route::get('/', 'FrontendController@index')->name('welcome');
+Route::get('/welcome', 'FrontendController@index')->name('welcome');
 Route::get('category/{slug}', 'FrontendController@single_category')->name('single_category');
 Route::get('post/{slug}', 'FrontendController@single_post')->name('single_post');
-
+Route::get('/', function(){
+    return view('comingsoon');
+});
 //search
 Route::get(' /results', function(){
 
@@ -22,6 +24,7 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     
     Route::get('/dashboard', 'FrontendController@dashboard')->name('index');
@@ -31,7 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/store_post', 'PostController@store')->name('store_post');
     Route::get('/edit_post/{id}', 'PostController@edit')->name('edit_post');
     Route::post('/update_post/{id}', 'PostController@update')->name('update_post');
-    Route::get('/trashed_posts', 'PostController@trashed')->name('trashed_posts');
+    Route::get('/trashed_posts', 'PostController@trashed ')->name('trashed_posts');
     
     //category routes
     Route::get('/view_category', 'CategoryController@index')->name('view_category');
