@@ -25,8 +25,8 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    
+Route::group(['prefix' => 'manage', 'middleware' => 'auth'], function () {
+
     Route::get('/dashboard', 'FrontendController@dashboard')->name('index');
     //post routes
     Route::get('/view_posts', 'PostController@index')->name('view_posts');
@@ -63,3 +63,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     });
 
 });
+

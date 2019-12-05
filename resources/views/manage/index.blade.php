@@ -147,7 +147,9 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
-                                Copyright © 2019. All rights reserved. App by ...Mwangaza IT
+                                Copyright © 2019. All rights reserved
+                                    <br>
+                                Mwangaza IT...powered by mitochondria 
                             </div>
                             
                         </div>
