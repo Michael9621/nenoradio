@@ -25,7 +25,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 
-Route::group(['prefix' => 'manage', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'manage'], function () {
 
     Route::get('/dashboard', 'FrontendController@dashboard')->name('index');
     //post routes
