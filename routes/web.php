@@ -21,7 +21,7 @@ Route::group(['prefix' => 'auth'], function () {
 
     Auth::routes([ 'register' => false ]);
 
-});
+
 
 
 
@@ -64,3 +64,4 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth']], function () {
 
 });
 
+});
