@@ -20,6 +20,8 @@ Route::get(' /results', function(){
 Route::group(['prefix' => 'auth'], function () {
 
     Auth::routes([ 'register' => false ]);
+
+
 });
 
 
