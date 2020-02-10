@@ -36,7 +36,7 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth']], function () {
     Route::post('/store_post', 'PostController@store')->name('store_post');
     Route::get('/edit_post/{id}', 'PostController@edit')->name('edit_post');
     Route::post('/update_post/{id}', 'PostController@update')->name('update_post');
-    Route::get('/trashed_posts', 'PostController@trashed ')->name('trashed_posts');
+    Route::get('/trashed_posts', 'PostController@trashed')->name('trashed_posts');
     
     //category routes
     Route::get('/view_category', 'CategoryController@index')->name('view_category');
