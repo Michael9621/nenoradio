@@ -157,8 +157,8 @@
 							<!-- footer about -->
 							<div class="footer-widget about-widget">
 								<div class="footer-logo">
-									<h2 class="title"><a href="{{route('welcome')}}" class="logo">Mwangaza T.V/a></h2>
-									<p>Mwangaza Tv is a TV station that exist to spread the word God to alll</p>
+									<h2 class="title"><a href="{{route('welcome')}}" class="logo">Mwangaza Radio/a></h2>
+									<p>Mwangaza Radio is a radio station that exist to spread the word God to alll</p>
 								</div>
 							</div>
 							<!-- /footer about -->
