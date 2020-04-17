@@ -67,6 +67,28 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title text-center">tv categories</h3>
+                                <p class="card-text text-center" style="padding:20px; font-size:20px;"> {{$tv_categories}} </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title text-center">radio categories</h3>
+                                <p class="card-text text-center" style="padding:20px; font-size:20px;">{{$radio_categories}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                </div>
             
                 <div class="row">
                     <div class="col-xl-12">

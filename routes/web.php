@@ -1,12 +1,12 @@
 <?php
 
 //front end
-Route::get('/welcome', 'FrontendController@index')->name('welcome');
+Route::get('/news', 'FrontendController@index')->name('welcome');
 Route::get('category/{slug}', 'FrontendController@single_category')->name('single_category');
 Route::get('post/{slug}', 'FrontendController@single_post')->name('single_post');
-Route::get('/', function(){
-    return view('comingsoon');
-});
+Route::get('/', 'FrontendController@tv_home')->name('home');
+Route::get('/presenters', 'FrontendController@tv_presenters')->name('presenters');
+Route::get('/shows', 'FrontendController@tv_shows')->name('shows');
 //search
 Route::get(' /results', function(){
 
@@ -55,6 +55,25 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth']], function () {
     Route::get('/delete_user/{id}', 'UserController@destroy')->name('delete_user');
     Route::get('/make_admin/{id}', 'UserController@makeAdmin')->name('make_admin');
     Route::get('/remove_admin/{id}', 'UserController@removeAdmin')->name('remove_admin');
+
+    //shows
+    Route::get('/tv_view_show', 'ShowController@tv_index')->name('tv_view_show');
+    Route::get('/radio_view_show', 'ShowController@radio_index')->name('radio_view_show');
+    Route::get('/create_show', 'ShowController@create')->name('create_show');
+    Route::post('/store_show', 'ShowController@store')->name('store_show');
+    Route::get('/edit_show/{id}', 'ShowController@edit' )->name('edit_show');
+    Route::post('/update_show/{id}', 'ShowController@update')->name('update_show');
+    Route::get('/view_show/{id}', 'ShowController@show')->name('view_show');
+    Route::get('/destroy_show/{id}', 'ShowController@destroy')->name('delete_show');
+
+    //presenters
+    Route::get('/view_presenters', 'PresenterController@index')->name('view_presenters');
+    Route::get('/create_presenter', 'PresenterController@create')->name('create_presenter');
+    Route::post('/store_presenter', 'PresenterController@store')->name('store_presenter');
+    Route::get('/edit_presenter', 'PresenterController@edit')->name('edit_presenter');
+    Route::post('/update_presenter', 'PresenterController@update')->name('update_presenter');
+    Route::get('/delete_presenter', 'PresenterController@destroy')->name('delete_presenter');
+    Route::get('/view_presenter/{id}', 'PresenterController@show')->name('view_presenter');
 
     //admin routes--group
     Route::group(['middleware' => 'admin'], function(){

@@ -36,15 +36,6 @@
 	
 		<!-- Header -->
 		<header id="header">
-			
-			<!-- Center Header -->
-			<div id="center-header">
-				<div class="container">
-					<h1 class="logo text-center" style="font-family:Comic Sans MS;">Mwangaza wa neno fm</h1>
-				</div>
-			</div>
-			<!-- /Center Header -->
-			
 			<!-- Nav Header -->
 			<div id="nav-header">
 				<div class="container">
@@ -54,11 +45,17 @@
 						</div>
 						<ul class="main-nav nav navbar-nav">
 							<li><a href="{{route('welcome')}}">Home</a></li>
-							@foreach($categories as $category)
-							<li><a href="{{ route('single_category', ['slug' => $category->slug ]) }}">{{$category->name}}</a></li>
-							@endforeach
+							@if($categories->count() > 0)
+								@foreach($categories as $category)
+									<li><a href="{{ route('single_category', ['slug' => $category->slug ]) }}">{{$category->name}}</a></li>
+								@endforeach
+							@else
+									<li><a class="text-center">no categories</a></li>
+							@endif
 						</ul>
 					</nav>
+					
+
 					<div class="button-nav">
 						<button class="search-collapse-btn"><i class="fa fa-search"></i></button>
 						<button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
@@ -67,6 +64,11 @@
 								<input class="input" type="text" name="search" placeholder="Search posts">
 							</form>
 						</div>
+					</div>
+
+					<div class="button-nav">
+						<a class="" href="https://mwangazatv.co.ke/" style="color:#fff;"><i class="fa fa-tv"></i> tv</a>
+						<button class=""href="https://mwangazawanenofm.co.ke/" style="color:#fff;"><i class="fa fa-tv"></i> radio</button>
 					</div>
 				</div>
 			</div>

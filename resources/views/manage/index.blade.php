@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('../assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
     <link rel="stylesheet" href="{{ asset ('assets/vendor/summernote/css/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('../assets/vendor/multi-select/css/multi-select.css') }}">
 </head>
 
 <body>
@@ -23,7 +24,7 @@
          <!-- ============================================================== -->
         <!-- navbar -->
         <!-- ============================================================== -->
-         <div class="dashboard-header">
+        <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="{{ route('index') }}">Mwangaza Radio</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,26 +81,28 @@
                             </li>
 
                             <li class="nav-divider">
-                                posts
+                                blog
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('view_posts') }}">view posts</a>
+                                <a class="nav-link"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4">radio blog</a>
+                                <div id="submenu-4" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('view_posts')}}">view posts<span class="badge badge-secondary">New</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('create_post')}}">create a post</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('trashed_posts')}}">trashed posts</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('trashed_posts') }}">trashed posts</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('create_post') }}">create posts</a>
-                            </li>
-                            
+                        
                             @if(Auth::user()->admin)
-                                <li class="nav-divider">
-                                    category
-                                </li>
-
+                                
                                 <li class="nav-item">
                                     <a class="nav-link"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2">manage categories</a>
                                     <div id="submenu-2" class="collapse submenu" style="">
@@ -109,6 +112,41 @@
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{{ route('create_category')}}">create categories</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="nav-divider">
+                                    shows and presenters
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6">presenters</a>
+                                    <div id="submenu-6" class="collapse submenu" style="">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('view_presenters')}}">view presenters<span class="badge badge-secondary">New</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('create_presenter')}}">create presenters</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5">shows</a>
+                                    <div id="submenu-5" class="collapse submenu" style="">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('tv_view_show')}}">TV shows<span class="badge badge-secondary">New</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('radio_view_show')}}">Radio shows</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('create_show')}}">Create shows</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -170,6 +208,10 @@
     <script src="{{ asset('../assets/libs/js/main-js.js') }}"></script>
     <script src="{{ asset ('assets/vendor/summernote/js/summernote-bs4.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script src="{{ asset('../assets/vendor/multi-select/js/jquery.multi-select.js') }}"></script>
+    <script>
+    $('#my-select').multiSelect()
+    </script>
     <script>
         $(document).ready(function() {
             $('#summernote').summernote({
@@ -187,6 +229,32 @@
         @if(Session::has('warning'))
             toastr.warning("{{Session::get('warning')}}")
         @endif
+
+        
+    </script>
+
+    <script type="text/javascript">
+        function text() {
+            if (document.getElementById('tv').checked) {
+
+                document.getElementById('radio_domain').style.display = 'none';
+                
+                document.getElementById('tv_domain').style.display = 'block';
+            }
+
+            else document.getElementById('tv_domain').style.display = 'none';
+
+        }
+
+        function text2(){
+            if (document.getElementById('radio').checked) {
+                document.getElementById('tv_domain').style.display = 'none';
+
+                document.getElementById('radio_domain').style.display = 'block';
+            }
+
+            else document.getElementById('radio_domain').style.display = 'none';
+        }
     </script>
 </body>
  

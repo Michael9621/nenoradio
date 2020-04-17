@@ -28,8 +28,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        if(Category::count() > 0){
-            return view('manage.posts.create')->with('categories', Category::all());
+        if(Category::count() > 0 && Category::where('domain',0)->count() > 0 && Category::where('domain',1)->count() > 0){
+            $radio_categories = Category::where('domain',0)->get();
+            $tv_categories = Category::where('domain',1)->get();
+            return view('manage.posts.create')->with('radio_categories', $radio_categories )
+                                              ->with('tv_categories', $tv_categories);
         }else{
             Session::flash('warning', 'posts cannot be created, categories missing');
             return redirect()->back();
@@ -54,11 +57,12 @@ class PostController extends Controller
         $post = Post::create([
             "title" => $request->title,
             "featured_image" => 'uploads/posts/'.$featured_new_name,
-            "category_id" => $request->category,
+            "category_id" => $request->choice==1?$request->tv_category:$request->radio_category,
             "content"=> $request->content,
             "draft" => $request->draft,
             "user_id" => Auth::user()->id,
-            "slug"=>str_slug($request->title)
+            "slug"=>str_slug($request->title),
+            "domain" => $request->choice
 
         ]);
 

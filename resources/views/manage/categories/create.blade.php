@@ -39,6 +39,19 @@
                                             <input id="inputText3" type="text"  name="name" class="form-control" placeholder="enter category name">
                                         </div>
 
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" name="domain"  value="0" class="custom-control-input"><span class="custom-control-label">radio</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" name="domain" value="1"  class="custom-control-input"><span class="custom-control-label">tv</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <button class="btn btn-success" type="submit">Save</button>
                                         </div>   

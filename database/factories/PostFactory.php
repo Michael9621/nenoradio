@@ -16,9 +16,10 @@ $factory->define(Post::class, function (Faker $faker) {
         },
         'user_id'=> function(){
     		  return User::all()->random();
-    	  },
+        },
         'content' => $faker->text,
         'slug' => str_slug($faker->word),
-        'draft' => $faker->boolean($chanceOfGettingTrue = 50) 
+        'draft' => $faker->boolean($chanceOfGettingTrue = 50),
+        'domain'=> $faker->boolean($chanceOfGettingTrue = 50)
     ];
 });

@@ -3,80 +3,28 @@
 	@section('content')
 		<!-- Owl Carousel 1 -->
 		<div id="owl-carousel-1" class="owl-carousel owl-theme center-owl-nav">
-			<!-- ARTICLE -->
-			<article class="article thumb-article">
-				<div class="article-img">
-					<img src="{{$first_post->featured_image}}" alt="{{$first_post->featured_image}}">
-				</div>
-				<div class="article-body">
-					<ul class="article-info">
-						<li class="article-category"><a href="#">{{ $first_post->category->name }}</a></li>
-						<li class="article-type"><i class="fa fa-camera"></i></li>
-					</ul>
-					<h2 class="article-title"><a href="{{ route('single_post', ['slug' => $first_post->slug])}}">{{ $first_post->title }}</a></h2>
-					<ul class="article-meta">
-						<li><i class="fa fa-clock-o"></i>{{ $first_post->created_at->toFormattedDateString()}}</li>
-						<li><i class="fa fa-comments"></i> 33</li>
-					</ul>
-				</div>
-			</article>
-			<!-- /ARTICLE -->
-			
-			<!-- ARTICLE -->
-			<article class="article thumb-article">
-				<div class="article-img">
-					<img src="{{ $second_post->featured_image}}" alt="">
-				</div>
-				<div class="article-body">
-					<ul class="article-info">
-						<li class="article-category"><a href="#">{{ $second_post->category->name}}</a></li>
-						<li class="article-type"><i class="fa fa-file-text"></i></li>
-					</ul>
-					<h2 class="article-title"><a href="#">{{ $second_post->title}}</a></h2>
-					<ul class="article-meta">
-						<li><i class="fa fa-clock-o"></i>{{ $second_post->created_at->toFormattedDateString()}}</li>
-						<li><i class="fa fa-comments"></i> 33</li>
-					</ul>
-				</div>
-			</article>
-			<!-- /ARTICLE -->
-			
-			<!-- ARTICLE -->
-			<article class="article thumb-article">
-				<div class="article-img">
-					<img src="{{ $third_post->featured_image}}" alt="">
-				</div>
-				<div class="article-body">
-					<ul class="article-info">
-						<li class="article-category"><a href="#">{{ $third_post->category->name}}</a></li>
-						<li class="article-type"><i class="fa fa-camera"></i></li>
-					</ul>
-					<h2 class="article-title"><a href="#">{{ $third_post->title}}</a></h2>
-					<ul class="article-meta">
-						<li><i class="fa fa-clock-o"></i>{{ $third_post->created_at->toFormattedDateString()}}</li>
-						<li><i class="fa fa-comments"></i> 33</li>
-					</ul>
-				</div>
-			</article>
-			<!-- /ARTICLE -->
-			<!-- ARTICLE -->
-			<article class="article thumb-article">
-				<div class="article-img">
-					<img src="{{ $fourth_post->featured_image}}" alt="">
-				</div>
-				<div class="article-body">
-					<ul class="article-info">
-						<li class="article-category"><a href="#">{{ $fourth_post->category->name}}</a></li>
-						<li class="article-type"><i class="fa fa-camera"></i></li>
-					</ul>
-					<h2 class="article-title"><a href="#">{{ $fourth_post->title}}</a></h2>
-					<ul class="article-meta">
-						<li><i class="fa fa-clock-o"></i>{{ $fourth_post->created_at->toFormattedDateString()}}</li>
-						<li><i class="fa fa-comments"></i> 33</li>
-					</ul>
-				</div>
-			</article>
-			<!-- /ARTICLE -->
+			@if($header_posts->count()> 0)
+				@foreach($header_posts as $header_post)
+				<!-- ARTICLE -->
+				<article class="article thumb-article">
+					<div class="article-img">
+						<img src="{{asset($header_post->featured_image)}}" alt="{{$header_post->featured_image}}">
+					</div>
+					<div class="article-body">
+						<ul class="article-info">
+							<li class="article-category"><a href="#">{{ $header_post->category->name }}</a></li>
+							<li class="article-type"><i class="fa fa-camera"></i></li>
+						</ul>
+						<h2 class="article-title"><a href="{{ route('single_post', ['slug' => $header_post->slug])}}">{{ $header_post->title }}</a></h2>
+						<ul class="article-meta">
+							<li><i class="fa fa-clock-o"></i>{{ $header_post->created_at->toFormattedDateString()}}</li>
+							<li><i class="fa fa-comments"></i> 33</li>
+						</ul>
+					</div>
+				</article>
+				<!-- /ARTICLE -->
+				@endforeach
+			@endif
 		</div>
 		<!-- /Owl Carousel 1 -->
 		
@@ -93,42 +41,48 @@
 							<!-- section title -->
 							<div class="col-md-12">
 								<div class="section-title">
-									<h2 class="title">{{ $first_category->name }}</h2>
+									<h2 class="title">{{ $first_category->count() > 0 ? $first_category->name : "no category yet" }}</h2>
 								</div>
 							</div>
 							<!-- /section title -->
-							@foreach($first_category->posts->sortKeysDesc()->take(2) as $post)
-								<!-- Column 1 -->
-								<div class="col-md-6 col-sm-6">
-									<!-- ARTICLE -->
-									<article class="article">
-										<div class="article-img">
-											<a href="#">
-												<img src="{{$post->featured_image}}" alt="{{$post->featured_image}}">
-											</a>
-											<ul class="article-info">
-												<li class="article-type"><i class="fa fa-camera"></i></li>
-											</ul>
-										</div>
-										<div class="article-body">
-											<h3 class="article-title"><a href="{{ route('single_post', ['slug' => $post->slug])}}">{{ $post->title }}</a></h3>
-											<ul class="article-meta">
-												<li><i class="fa fa-clock-o"></i>{{ $post->created_at->toFormattedDateString()}}</li>
-												<li><i class="fa fa-comments"></i> 33</li>
-											</ul>
-											<p>{{ str_limit($post->content, 40,'...')}}</p>
-										</div>
-									</article>
-									<!-- /ARTICLE -->
+							@if($first_category->posts->count() > 0)
+								@foreach($first_category->posts->where('draft',1)->where('domain',1)->sortKeysDesc()->take(2) as $post)
+									<!-- Column 1 -->
+									<div class="col-md-6 col-sm-6">
+										<!-- ARTICLE -->
+										<article class="article">
+											<div class="article-img">
+												<a href="#">
+													<img src="{{asset($post->featured_image)}}" alt="{{$post->featured_image}}">
+												</a>
+												<ul class="article-info">
+													<li class="article-type"><i class="fa fa-camera"></i></li>
+												</ul>
+											</div>
+											<div class="article-body">
+												<h3 class="article-title"><a href="{{ route('single_post', ['slug' => $post->slug])}}">{{ $post->title }}</a></h3>
+												<ul class="article-meta">
+													<li><i class="fa fa-clock-o"></i>{{ $post->created_at->toFormattedDateString()}}</li>
+													<li><i class="fa fa-comments"></i> 33</li>
+												</ul>
+												<p>{{ str_limit($post->content, 40,'...')}}</p>
+											</div>
+										</article>
+										<!-- /ARTICLE -->
+									</div>
+									<!-- /Column 1 -->
+								@endforeach
+							@else
+								<div class="col-md-6">
+									<p class="text-center"> no posts yet </p>
 								</div>
-								<!-- /Column 1 -->
-							@endforeach
+							@endif
 						</div>
 						<!-- /row -->
 						
 						<!-- row -->
 						<div class="row">
-						@foreach($first_category->posts->sortKeysDesc()->slice(2)->take(3) as $post)
+						@foreach($first_category->posts->where('draft',1)->where('domain',1)->sortKeysDesc()->slice(2)->take(3) as $post)
 							<!-- Column 1 -->
 							<div class="col-md-4 col-sm-4">
 								<!-- ARTICLE -->
@@ -194,52 +148,54 @@
 				<!-- Column 1 -->
 				<div class="col-md-6 col-sm-6">
 					@if($second_category->posts->count() > 0)
-					<!-- section title -->
-					<div class="section-title">
-						<h2 class="title">{{ $second_category->name }}</h2>
-					</div>
-					<!-- /section title -->
-					@foreach($second_category->posts->sortKeysDesc()->take(1) as $post)
-					<!-- ARTICLE -->
-					<article class="article">
-						<div class="article-img">
-							<a href="#">
-								<img src="{{ $post->featured_image }}" alt="{{ $post->featured_image }}">
-							</a>
-							<ul class="article-info">
-								<li class="article-type"><i class="fa fa-camera"></i></li>
-							</ul>
+						<!-- section title -->
+						<div class="section-title">
+							<h2 class="title">{{ $second_category->name }}</h2>
 						</div>
-						<div class="article-body">
-							<h3 class="article-title"><a href="#">{{ $post->title }}</a></h3>
-							<ul class="article-meta">
-								<li><i class="fa fa-clock-o"></i> {{ $post->created_at->toFormattedDateString()}}</li>
-								<li><i class="fa fa-comments"></i> 33</li>
-							</ul>
-							<p>Populo tritani laboramus ex mei, no eum iuvaret ceteros euripidis, ne alia sadipscing mei. Te inciderint cotidieque pro, ei iisque docendi qui, ne accommodare theophrastus reprehendunt vel. Et commodo menandri eam.</p>
-						</div>
-					</article>
-					<!-- /ARTICLE -->
-					@endforeach
-					
-					@foreach($second_category->posts->sortKeysDesc()->slice(1)->take(2) as $post)
-					<!-- ARTICLE -->
-					<article class="article widget-article">
-						<div class="article-img">
-							<a href="#">
-								<img src="{{ $post->featured_image }}" alt="">
-							</a>
-						</div>
-						<div class="article-body">
-							<h4 class="article-title"><a href="#">{{$post->title}}</a></h4>
-							<ul class="article-meta">
-								<li><i class="fa fa-clock-o"></i> {{ $post->created_at->toFormattedDateString()}}</li>
-								<li><i class="fa fa-comments"></i> 33</li>
-							</ul>
-						</div>
-					</article>
-					<!-- /ARTICLE -->
-					@endforeach
+						<!-- /section title -->
+						@foreach($second_category->posts->where('draft',1)->where('domain',1)->sortKeysDesc()->take(1) as $post)
+						<!-- ARTICLE -->
+						<article class="article">
+							<div class="article-img">
+								<a href="#">
+									<img src="{{ $post->featured_image }}" alt="{{ $post->featured_image }}">
+								</a>
+								<ul class="article-info">
+									<li class="article-type"><i class="fa fa-camera"></i></li>
+								</ul>
+							</div>
+							<div class="article-body">
+								<h3 class="article-title"><a href="#">{{ $post->title }}</a></h3>
+								<ul class="article-meta">
+									<li><i class="fa fa-clock-o"></i> {{ $post->created_at->toFormattedDateString()}}</li>
+									<li><i class="fa fa-comments"></i> 33</li>
+								</ul>
+								<p>Populo tritani laboramus ex mei, no eum iuvaret ceteros euripidis, ne alia sadipscing mei. Te inciderint cotidieque pro, ei iisque docendi qui, ne accommodare theophrastus reprehendunt vel. Et commodo menandri eam.</p>
+							</div>
+						</article>
+						<!-- /ARTICLE -->
+						@endforeach
+						
+						@foreach($second_category->posts->where('draft',1)->where('domain',1)->sortKeysDesc()->slice(1)->take(2) as $post)
+						<!-- ARTICLE -->
+						<article class="article widget-article">
+							<div class="article-img">
+								<a href="#">
+									<img src="{{ $post->featured_image }}" alt="">
+								</a>
+							</div>
+							<div class="article-body">
+								<h4 class="article-title"><a href="#">{{$post->title}}</a></h4>
+								<ul class="article-meta">
+									<li><i class="fa fa-clock-o"></i> {{ $post->created_at->toFormattedDateString()}}</li>
+									<li><i class="fa fa-comments"></i> 33</li>
+								</ul>
+							</div>
+						</article>
+						<!-- /ARTICLE -->
+						@endforeach
+					@else
+						<p class="text-center"> no posts yet </p>
 					@endif
 				</div>
 				<!-- /Column 1 -->
@@ -252,7 +208,7 @@
 						<h2 class="title">{{ $third_category->name }}</h2>
 					</div>
 					<!-- /section title -->
-					@foreach($third_category->posts->sortKeysDesc()->take(1) as $post)
+					@foreach($third_category->posts->where('draft',1)->where('domain',1)->sortKeysDesc()->take(1) as $post)
 					<!-- ARTICLE -->
 					<article class="article">
 						<div class="article-img">
@@ -275,7 +231,7 @@
 					<!-- /ARTICLE -->
 					@endforeach
 				
-					@foreach($third_category->posts->sortKeysDesc()->slice(1)->take(2) as $post)
+					@foreach($third_category->posts->where('draft',1)->where('domain',1)->sortKeysDesc()->slice(1)->take(2) as $post)
 					<!-- ARTICLE -->
 					<article class="article widget-article">
 						<div class="article-img">
@@ -293,6 +249,8 @@
 					</article>
 					<!-- /ARTICLE -->
 					@endforeach
+				@else
+					<p class="text-center"> no posts yet </p>
 				@endif
 				</div>
 				<!-- /Column 2 -->
@@ -309,14 +267,14 @@
 					<div class="col-md-12">
 						<!-- section title -->
 						<div class="section-title">
-							<h2 class="title">{{ $fourth_category->name }}</h2>
+							<h2 class="title">{{ $fourth_category->count() > 0 ? $fourth_category->name : "no category yet" }}</h2>
 							<div id="nav-carousel-2" class="custom-owl-nav pull-right"></div>
 						</div>
 						<!-- /section title -->
-						
+						@if($fourth_category->posts->count() > 0)
 						<!-- owl carousel 2 -->
 						<div id="owl-carousel-2" class="owl-carousel owl-theme">
-							@foreach($fourth_category->posts->sortKeysDesc()->take(4) as $post)
+							@foreach($fourth_category->posts->where('draft',1)->where('domain',1)->sortKeysDesc()->take(4) as $post)
 							<!-- ARTICLE -->
 							<article class="article thumb-article">
 								<div class="article-img">
@@ -338,6 +296,9 @@
 							@endforeach
 						</div>
 						<!-- /owl carousel 2 -->
+						@else
+						  <p class="text-center"> no posts yet </p>
+						@endif
 					</div>
 					<!-- /Main Column -->
 				</div>

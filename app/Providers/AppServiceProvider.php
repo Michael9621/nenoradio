@@ -27,9 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('layout.index', function($view)
         {
-            $view->with('categories', Category::all());
-            $view->with('posts', Post::orderBy('created_at', 'desc')->take(3)->get());
-            $view->with('posts_two', Post::orderBy('created_at', 'desc')->skip(3)->take(3)->get());
+            $view->with('categories', Category::where('domain',1)->get());
+            $view->with('posts', Post::where('domain',1)->where('draft',1)->orderBy('created_at', 'desc')->take(3)->get());
+            $view->with('posts_two', Post::where('domain',1)->where('draft',1)->orderBy('created_at', 'desc')->skip(3)->take(3)->get());
         });
     }
 }

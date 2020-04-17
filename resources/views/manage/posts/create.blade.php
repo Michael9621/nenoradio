@@ -44,15 +44,39 @@
                                             <input id="inputText3" type="file"  name="featured" class="form-control" placeholder="featured image">
                                         </div>
 
-                                        
-                                        <div class="form-group">
-                                            <label for="input-select">Select category</label>
-                                            <select class="form-control" id="input-select" name="category">
-                                                @foreach($categories as $category)
-                                                    <option value="{{$category->id}}">{{ $category->name }}</option>
-                                                @endforeach
-                                            </select>
+                                        <label for="input-select">choose domain</label>
+                                        <br>
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" name="choice" class="custom-control-input" id="tv" value="1"> <span onclick="javascript:text();" class="custom-control-label">TV</span>
+                                            </label>
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" name="choice" class="custom-control-input" id="radio" value="0"> <span onclick="javascript:text2();" class="custom-control-label"  >Radio</span>
+                                            </label>
+                                
+                                        <div class="tv" style="display:none;" id="tv_domain">
+                                            <div class="form-group">
+                                                <label for="input-select">Select category (tv)</label>
+                                                <select class="form-control" id="input-select" name="tv_category">
+                                                    @foreach($tv_categories as $tv_category)
+                                                        <option value="{{$tv_category->id}}">{{ $tv_category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>        
                                         </div>
+
+                                        <div class="radio" style="display: none;" id="radio_domain">
+                                            <div class="form-group">
+                                                <label for="input-select">Select category (radio)</label>
+                                                <select class="form-control" id="input-select" name="radio_category">
+                                                    @foreach($radio_categories as $radio_category)
+                                                        <option value="{{$radio_category->id}}">{{ $radio_category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>        
+                                        </div>
+                                        
+                                        
+                            
                                         <label class="control-label sr-only" for="summernote">Descriptions </label>
                                         <div class="form-group">
                                             <label class="control-label sr-only" for="content">Descriptions </label>

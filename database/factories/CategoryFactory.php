@@ -8,6 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Category::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
-        'slug' => str_slug($faker->word)
+        'slug' => str_slug($faker->word),
+        'domain'=> $faker->boolean($chanceOfGettingTrue = 50)
     ];
 });
