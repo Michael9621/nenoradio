@@ -9,6 +9,7 @@ use App\User;
 use App\Presenter; 
 use App\Show;
 use App\Domain;
+use Session;
 
 
 class FrontendController extends Controller
@@ -56,7 +57,13 @@ class FrontendController extends Controller
     }
 
     public function tv_home(){
-        $shows=Show::where('domain',1)->get()->random(3);
+        if(show::all()->count() > 0){
+            $shows=Show::where('domain',1)->get()->random(3);
+        }
+        else{
+            $shows=Show::where('domain',1)->take(3)->get();
+        }
+        
         $posts=Post::where('domain',1)->where('draft',1)->orderBy('created_at', 'desc')->take(3)->get();
         return view('home')->with('shows', $shows)
         ->with('posts', $posts);

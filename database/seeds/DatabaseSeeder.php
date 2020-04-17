@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
          //$this->call(UsersTableSeeder::class);
         //factory(Category::class,9)->create();
         //factory(Post::class,100)->create();
-        //$this->call(DomainSeeder::class);
+        $this->call(DomainSeeder::class);
     }
 }

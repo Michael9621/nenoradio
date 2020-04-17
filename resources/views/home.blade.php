@@ -44,26 +44,26 @@
     </div>
 
     @if($shows->count() > 0)
-        <div class="cards-list">
-          @foreach($shows as $show)
-          <div class="card 1">
-            <a class="card_image" href="#"> <img src="{{ $show->featured_image }}" /> </a>
-            <p class="text-center"> {{ $show->name }} </p>
-          </div>
-          @endforeach
+      <div class="cards-list">
+        @foreach($shows as $show)
+        <div class="card 1">
+          <a class="card_image" href="#"> <img src="{{ $show->featured_image }}" /> </a>
+          <p class="text-center"> {{ $show->name }} </p>
         </div>
+        @endforeach
+      </div>
     @else
       <div class="sermons-content-area sermons-p sermons-margin">
         <div class="container">
             <div class="c0l-12">
                 <div class="sermons-text text-center">    
-                    <p class="text-center p-5"> no presenters at the moment </p>
+                    <p class="text-center p-5"> no shows at the moment </p>
                 </div>
             </div>   
         </div>   
       </div>
     @endif
-
+    @if($posts->count() > 0)
   <section class="ftco-section ftco-degree-bg">
       <div class=" heading-section text-center ftco-animate">
         <h2 class="mb-4">News</h2>
@@ -74,7 +74,7 @@
             
                 <div class="row">
                 
-                  @if($posts->count() > 0)
+                 
                     @foreach($posts as $post)
                     <div class="col-md-4 d-flex ftco-animate">
                       <diV class=" card card-t">
@@ -92,9 +92,14 @@
                       </div>
                     </div>
                     @endforeach
-                  @else
-                    <p>  no posts </p>
-                  @endif
+                    <div class="row mt-5 text-center">
+                      <div class="col">
+                        <div class="block-27">
+                                <p><a href="blog-single.html" class="btn btn-primary py-4 px-5">Read more</a></p>
+                        </div>
+                      </div>
+                    </div>
+                 
                 
 
                 </div>
@@ -103,18 +108,13 @@
 
             
 
-				<div class="row mt-5 text-center">
-		          <div class="col">
-		            <div class="block-27">
-                         <p><a href="blog-single.html" class="btn btn-primary py-4 px-5">Read more</a></p>
-		            </div>
-		          </div>
-		        </div>
+
 
             </div> <!-- .col-md-8 -->
         </div>
       </div>
   </section> <!-- .section -->
+  @endif
 
   
   <div class="sermons-content-area sermons-p sermons-margin">
@@ -130,8 +130,6 @@
                     
 
                     </div>
-                    
-                     
             </div>   
         </div>
         

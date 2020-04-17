@@ -40,8 +40,8 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Mwangaza wa Neno Media.</h2>
-              <p>Mwanganza wa Neno is a media group that exists soely to spread the word of God to all</p>
+              <h2 class="ftco-heading-2">Mwangaza Tv.</h2>
+              <p>Mwanganza Tv is a TV station that exists soely to spread the word of God to all</p>
 
             </div>
           </div>
