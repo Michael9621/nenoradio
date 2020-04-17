@@ -42,8 +42,8 @@
     <div class="cards-list">
     @if($presenters->count() > 0)
         @foreach($presenters as $presenter)
-        <div class="card 1">
-           <div class="card_image"> <img src="{{asset($presenter->featured_image)}}" />
+        <div class="card" style="border-radius:50%; height:300px;">
+           <div class="card_image" style="border-radius:50%;"> <img src="{{asset($presenter->featured_image)}}" style="border-radius:50%; " />
                 <p class="text-center"> <b> {{ $presenter->name }} </b> </p>
             </div>
             
@@ -61,6 +61,8 @@
         
     </div>
     @endif
+
+    
 
 
     </div>
