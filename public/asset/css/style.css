@@ -9757,17 +9757,13 @@ textarea.form-control {
 }
 
 .tv{
-  height:600px;
-
+  line-height: 60vh;
+  height:80vh;
+   -webkit-clip-path: polygon(0 0, 100% 0, 100% 82%, 0% 100%);
+             clip-path: polygon(0 0, 100% 0, 100% 82%, 0% 100%);
+   text-align: center;
 }
 
-.tv h1{
-  padding: 20px 0;
-}
-
-.tv p{
-  padding: 20px 0;
-}
 
 .tv h1{
   text-transform: none;

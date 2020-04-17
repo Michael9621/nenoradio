@@ -4,7 +4,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-          <a class="navbar-brand" href=""> <img style="height:60px; width:100px;" src="{{asset ('asset/images/tvlogo.jpg') }}"> </span></a>
+          <a class="navbar-brand" href=""> <img style="height:60px; width:100px;" src="{{asset ('asset/images/radiologo.jpg') }}"> </span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
           </button>
@@ -32,7 +32,7 @@
       <div class="container">
         <div class="row no-gutters slider-text  justify-content-end" data-scrollax-parent="true">
           <div class="col-md-11 order-md-last ftco-animate mt-5 text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">TV presenters</h1>    
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">presenters</h1>    
           </div>
           
         </div>

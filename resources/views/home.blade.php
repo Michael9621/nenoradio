@@ -4,7 +4,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-          <a class="navbar-brand" href=""> <img style="height:60px; width:100px;" src="{{asset ('asset/images/tvlogo.jpg') }}"> </span></a>
+          <a class="navbar-brand" href=""> <img style="height:60px; width:100px;" src="{{asset ('asset/images/radiologo.jpg') }}"> </span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
           </button>
@@ -27,17 +27,21 @@
 @section('content')
 
   
-<div class="hero-wrap screens" style="background-image: url('asset/images/studio.jpg');" data-stellar-background-ratio="0.5"> 
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text  justify-content-end" data-scrollax-parent="true">
-          <div class="col-md-11 order-md-last ftco-animate mt-5 text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }" style="text-align:center; !important">Mwangaza TV<h1>    
+        <div class="hero-wrap tv " style="background-image: url('asset/images/studio.jpg'); " data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-end" data-scrollax-parent="true">
+              <div class="col-md-7 order-md-last ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
+                <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Listen live</h1>
+                <p><audio preload="none" controls id="audio1">
+                  <source src="https://stream.zenolive.com/ey34xcbrmeruv.aac" type="audio/mpeg" />
+                </audio></p>
+              </div>
+              <div class="col-md-5 order-md-last ftco-animate mt-5" data-scrollax=" " class="btn btn-black py-3 px-4">
+              </div>
+             </div>
           </div>
-          
         </div>
-      </div>
-    </div>
 
     <div class=" heading-section text-center ftco-animate">
       <h2 class="mb-4">Featured shows</h2>

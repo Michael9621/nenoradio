@@ -15,7 +15,7 @@ use Session;
 class FrontendController extends Controller
 {
     public function index(){
-        return view('welcome')->with('header_posts', Post::where('domain',1)->where('draft',1)->orderBy('created_at', 'desc')->take(4)->get())
+        return view('welcome')->with('header_posts', Post::where('domain',0)->where('draft',1)->orderBy('created_at', 'desc')->take(4)->get())
         ->with('first_category', Category::orderBy('created_at', 'asc')->first())
         ->with('second_category', Category::orderBy('created_at', 'asc')->skip(1)->take(1)->get()->first())
         ->with('third_category', Category::orderBy('created_at', 'asc')->skip(2)->take(1)->get()->first())
@@ -25,7 +25,7 @@ class FrontendController extends Controller
     public function single_post($slug){
         $post = Post::where('slug', $slug)->first();
         $category = $post->category;
-        $r_post=$category->posts->where('id', '!=', $post->id )->where('domain',1)->where('draft',1);
+        $r_post=$category->posts->where('id', '!=', $post->id )->where('domain', 0)->where('draft',1);
         
         return view('blog')->with('post', $post)
         ->with('related_posts', $r_post);
@@ -33,9 +33,9 @@ class FrontendController extends Controller
 
     public function single_category($slug){
         $category = Category::where('slug', $slug)->first();
-        $featured_posts = $category->posts()->where('domain',1)->where('draft',1)->orderBy('created_at', 'desc')->take(4)->get();
+        $featured_posts = $category->posts()->where('domain',0)->where('draft',1)->orderBy('created_at', 'desc')->take(4)->get();
         $second_section_posts = $category->posts()->where('domain',1)->where('draft',1)->orderBy('created_at', 'desc')->skip(4)->take(3)->get();
-        $other_posts = $category->posts()->where('domain',1)->where('draft',1)->orderBy('created_at', 'desc')->skip(7)->paginate(4);
+        $other_posts = $category->posts()->where('domain',0)->where('draft',1)->orderBy('created_at', 'desc')->skip(7)->paginate(4);
         return view('category')
         ->with('category', $category)
         ->with('featured_posts', $featured_posts)
@@ -58,24 +58,24 @@ class FrontendController extends Controller
 
     public function tv_home(){
         if(show::all()->count() > 0){
-            $shows=Show::where('domain',1)->get()->random(3);
+            $shows=Show::where('domain',0)->get()->random(3);
         }
         else{
-            $shows=Show::where('domain',1)->take(3)->get();
+            $shows=Show::where('domain',0)->take(3)->get();
         }
         
-        $posts=Post::where('domain',1)->where('draft',1)->orderBy('created_at', 'desc')->take(3)->get();
+        $posts=Post::where('domain',0)->where('draft',1)->orderBy('created_at', 'desc')->take(3)->get();
         return view('home')->with('shows', $shows)
         ->with('posts', $posts);
     }
 
     public function tv_presenters(){
-        $domain=Domain::find(2);
+        $domain=Domain::find(1);
         $presenters=$domain->presenters()->get();
         return view('presenters')->with('presenters',$presenters);
     }
 
     public function tv_shows(){
-        return view('shows')->with('shows', Show::where('domain', 1)->get());
+        return view('shows')->with('shows', Show::where('domain', 0)->get());
     }
 }

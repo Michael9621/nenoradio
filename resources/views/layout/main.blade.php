@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Mwangaza Tv</title>
-    <link rel="icon" href="{{ asset('asset/images/tvlogo.jpg') }}" type="image/gif" sizes="16x16">
+    <title>Mwangaza wa Neno F.M</title>
+    <link rel="icon" href="{{ asset('asset/images/radiologo.jpg') }}" type="image/gif" sizes="16x16">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -40,8 +40,8 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Mwangaza Tv.</h2>
-              <p>Mwanganza Tv is a TV station that exists soely to spread the word of God to all</p>
+              <h2 class="ftco-heading-2">Mwangaza wa Neno F.M</h2>
+              <p>Mwanganza FM is a radio station that exists soely to spread the word of God to all</p>
 
             </div>
           </div>
@@ -52,7 +52,7 @@
               <ul class="list-unstyled">
                 <li><a href="{{ route('home') }}" class="py-2 d-block">Home</a></li>
                 <li><a href="{{ route('shows') }}" class="py-2 d-block">Shows</a></li>
-                <li><a href="https://mwangazawanenofm.co.ke/" class="py-2 d-block">Radio</a></li>
+                <li><a href="https://mwangazatv.co.ke/" class="py-2 d-block"> Mawngaza TV</a></li>
 
                
             </div>
