@@ -5,8 +5,9 @@ Route::get('/news', 'FrontendController@index')->name('welcome');
 Route::get('category/{slug}', 'FrontendController@single_category')->name('single_category');
 Route::get('post/{slug}', 'FrontendController@single_post')->name('single_post');
 Route::get('/', 'FrontendController@tv_home')->name('home');
-Route::get('/presenters', 'FrontendController@tv_presenters')->name('presenters');
+
 Route::get('/shows', 'FrontendController@tv_shows')->name('shows');
+Route::get('/presenters', 'FrontendController@tv_presenters')->name('presenters');
 //search
 Route::get(' /results', function(){
 

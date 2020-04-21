@@ -69,13 +69,15 @@ class FrontendController extends Controller
         ->with('posts', $posts);
     }
 
+    
+
+    public function tv_shows(){
+        return view('shows')->with('shows', Show::where('domain', 0)->get());
+    }
+
     public function tv_presenters(){
         $domain=Domain::find(1);
         $presenters=$domain->presenters()->get();
         return view('presenters')->with('presenters',$presenters);
-    }
-
-    public function tv_shows(){
-        return view('shows')->with('shows', Show::where('domain', 0)->get());
     }
 }
