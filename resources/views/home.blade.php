@@ -13,7 +13,7 @@
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">home</a></li>
               <li class="nav-item"><a href="{{ route('shows') }}" class="nav-link">shows</a></li>
-              <li class="nav-item"><a href=" {{ route('presenters') }}" class="nav-link">presenters</a></li>
+              <li class="nav-item"><a href="{{ route('presenters') }}" class="nav-link">presenters</a></li>
               <li class="nav-item"><a href="https://mwangazawaneno.co.ke/contactus" class="nav-link">contact us</a></li>
             </ul>
           </div>
