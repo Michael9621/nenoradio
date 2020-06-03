@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
-use App\show;
+use App\Show;
 use App\Presenter;
 
 class ShowController extends Controller
