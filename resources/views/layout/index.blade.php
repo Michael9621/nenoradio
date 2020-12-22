@@ -36,35 +36,11 @@
 	
 		<!-- Header -->
 		<header id="header">
-			<!-- Top Header -->
-			<div id="top-header">
-				<div class="container">
-					<div class="header-links">
-						<ul>
-							<li><a href="#">About us</a></li>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">Advertisement</a></li>
-							<li><a href="#">Privacy</a></li>
-							<li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
-						</ul>
-					</div>
-					<div class="header-social">
-						<ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- /Top Header -->
 			
 			<!-- Center Header -->
 			<div id="center-header">
 				<div class="container">
-					<div class="header-logo">
-						<a href="#" class="logo"><img src="{{ asset('./img/edited.png') }}" alt=""></a>
-					</div>
+					<h1 class="logo text-center" style="font-family:Comic Sans MS;">Mwangaza wa neno fm</h1>
 				</div>
 			</div>
 			<!-- /Center Header -->
@@ -107,130 +83,68 @@
 				<!-- CONTAINER -->
 				<div class="container">
 					<!-- ROW -->
-					<div class="row">
-						
-						
+					<div class="row">	
 						<!-- Column 2 -->
 						<div class="col-md-4">
 							<!-- footer article -->
 							<div class="footer-widget">
 								<div class="widget-title">
-									<h2 class="title">Featured Posts</h2>
+									<h2 class="title">Recent posts</h2>
 								</div>
-
-								<!-- ARTICLE -->
-								<article class="article widget-article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-widget-1.jpg" alt="">
-										</a>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-								
-								<!-- ARTICLE -->
-								<article class="article widget-article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-widget-2.jpg" alt="">
-										</a>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-								
-								<!-- ARTICLE -->
-								<article class="article widget-article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-widget-3.jpg" alt="">
-										</a>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
+								@if($posts->count() > 0)
+									@foreach($posts as $post)
+									<!-- ARTICLE -->
+									<article class="article widget-article">
+										<div class="article-img">
+											<a href="{{route('single_post', ['slug' => $post->slug ])}}">
+												<img src="{{ $post->featured_image}}" alt="">
+											</a>
+										</div>
+										<div class="article-body">
+											<h4 class="article-title"><a href="{{route('single_post', ['slug' => $post->slug ])}}">{{ $post->title }}</a></h4>
+											<ul class="article-meta">
+												<li><i class="fa fa-clock-o"></i> {{ $post->created_at->toFormattedDateString() }}</li>
+											</ul>
+										</div>
+									</article>
+									<!-- /ARTICLE -->
+									@endforeach
+								@else
+									<p> no posts yet </p>
+								@endif
 							</div>
 							<!-- /footer article -->
 						</div>
 						<!-- /Column 2 -->
-						
+
 						<!-- Column 2 -->
 						<div class="col-md-4">
 							<!-- footer article -->
 							<div class="footer-widget">
 								<div class="widget-title">
-									<h2 class="title">Featured Posts</h2>
+									<h2 class="title">recent continued </h2>
 								</div>
-
-								<!-- ARTICLE -->
-								<article class="article widget-article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-widget-1.jpg" alt="">
-										</a>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-								
-								<!-- ARTICLE -->
-								<article class="article widget-article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-widget-2.jpg" alt="">
-										</a>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-								
-								<!-- ARTICLE -->
-								<article class="article widget-article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-widget-3.jpg" alt="">
-										</a>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
+								@if($posts_two->count() > 0)
+									@foreach($posts_two as $post)
+									<!-- ARTICLE -->
+									<article class="article widget-article">
+										<div class="article-img">
+											<a href="{{route('single_post', ['slug' => $post->slug ])}}">
+												<img src="{{ $post->featured_image}}" alt="">
+											</a>
+										</div>
+										<div class="article-body">
+											<h4 class="article-title"><a href="{{route('single_post', ['slug' => $post->slug ])}}">{{ $post->title }}</a></h4>
+											<ul class="article-meta">
+												<li><i class="fa fa-clock-o"></i> {{ $post->created_at->toFormattedDateString()}}</li>
+											</ul>
+										</div>
+									</article>
+									<!-- /ARTICLE -->
+									@endforeach
+								@else
+									<p>no posts yet</p>
+								@endif
 							</div>
 							<!-- /footer article -->
 						</div>
@@ -241,8 +155,8 @@
 							<!-- footer about -->
 							<div class="footer-widget about-widget">
 								<div class="footer-logo">
-									<a href="#" class="logo"><img src="{{asset('./img/logo-alt.png') }}" alt=""></a>
-									<p> gwwgehwgegwehgqwfeghqwfgeqwh</p>
+									<h2 class="title"><a href="{{route('welcome')}}" class="logo">Mwangaza Wa Neno F.M</a></h2>
+									<p>Mwangaza wa Neno F.M is a radio station that exist to spread the word God to alll</p>
 								</div>
 							</div>
 							<!-- /footer about -->
@@ -263,12 +177,11 @@
 							<!-- footer subscribe -->
 							<div class="footer-widget subscribe-widget">
 								<div class="widget-title">
-									<h2 class="title">Subscribe to Newslatter</h2>
+									<h2 class="title">Address</h2>
 								</div>
-								<form>
-									<input class="input" type="email" placeholder="Enter Your Email">
-									<button class="input-btn">Subscribe</button>
-								</form>
+								<p>Jewel Complex 6th Floor</p>
+								<p>email</p>
+								<p>phone</p>
 							</div>
 							<!-- /footer subscribe -->
 						</div>
@@ -289,8 +202,8 @@
 						<!-- footer copyright -->
 						<div class="col-md-12">
 							<div class="footer-copyright text-center">
-								<span>
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> Mwangaza Wa Neno F.M</a></span>
+								<span><b>
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> Mwangaza Wa Neno F.M</a></b></span>
 							</div>
 						</div>
 						<!-- /footer copyright -->

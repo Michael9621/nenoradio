@@ -53,17 +53,28 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        
-
-                                        
+                                        <label class="control-label sr-only" for="summernote">Descriptions </label>
                                         <div class="form-group">
-                                            <label class="control-label sr-only" for="summernote">Descriptions </label>
+                                            <label class="control-label sr-only" for="content">Descriptions </label>
                                             <textarea class="form-control" id="summernote" name="content" rows="6" placeholder="Write Descriptions"></textarea>
                                         </div>
-
+                                        
+                                       
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" name="draft"  value="0" class="custom-control-input"><span class="custom-control-label">save as draft</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" name="draft" value="1"  class="custom-control-input"><span class="custom-control-label">publish</span>
+                                                </label>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                            <button class="btn btn-success" type="submit">Save</button>
-                                        </div>   
+                                            <button class="btn btn-success" type="submit">save post</button>
+                                        </div>
 
                                         @csrf
                                     </form>

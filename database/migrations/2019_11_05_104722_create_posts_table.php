@@ -18,6 +18,8 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('featured_image');
             $table->integer('category_id');
+            $table->boolean('draft')->default(0);
+            $table->integer('user_id');
             $table->string('content');
             $table->string('slug');
             $table->softdeletes();

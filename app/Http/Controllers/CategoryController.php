@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -12,9 +13,15 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+
+        $this->middleware('admin');
+        
+    }
+
     public function index()
     {
-        return view('manage.categories.view')->with('categories', Category::all());
+        return view('manage.categories.view')->with('categories', Category::paginate(10));
     }
 
     /**
@@ -40,6 +47,8 @@ class CategoryController extends Controller
             'slug' => str_slug($request->name)
 
         ]);
+
+        Session::flash('success', 'category created successfully');
 
         return redirect()->route('view_category');
     }
@@ -78,6 +87,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->name = $request->name;
         $category->save();
+        Session::flash('success', 'category updated successfully');
         return redirect()->route('view_category');
     }
 
@@ -91,6 +101,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->delete();
+        Session::flash('success', 'category deleted successfully');
         return redirect()->route('view_category');
     }
 }

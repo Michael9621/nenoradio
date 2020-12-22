@@ -11,6 +11,8 @@
     <link href="{{ asset('../assets/vendor/fonts/circular-std/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('../assets/libs/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('../assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
+    <link rel="stylesheet" href="{{ asset ('assets/vendor/summernote/css/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
 </head>
 
 <body>
@@ -23,28 +25,30 @@
         <!-- ============================================================== -->
          <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="../index.html">Mwangaza Radio</a>
+                <a class="navbar-brand" href="{{ route('index') }}">Mwangaza Radio</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
-                        <li class="nav-item">
-                            <div id="custom-search" class="top-search-bar">
-                                <input class="form-control" type="text" placeholder="Search..">
-                            </div>
-                        </li>
+                        
                         
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">welcome {{ Auth::user()->name}} :)</a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">John Abraham</h5>
+                                    <h5 class="mb-0 text-white nav-user-name">{{ Auth::user()->name}}</h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
                     </ul>
@@ -90,50 +94,52 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('create_post') }}">create posts</a>
                             </li>
+                            
+                            @if(Auth::user()->admin)
+                                <li class="nav-divider">
+                                    category
+                                </li>
 
-                            <li class="nav-divider">
-                                category
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2">manage categories</a>
+                                    <div id="submenu-2" class="collapse submenu" style="">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('view_category')}}">view categories<span class="badge badge-secondary">New</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('create_category')}}">create categories</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2">manage categories</a>
-                                <div id="submenu-2" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('view_category')}}">view categories<span class="badge badge-secondary">New</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('create_category')}}">create categories</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                                <li class="nav-divider">
+                                    manage users
+                                </li>
 
-                            <li class="nav-divider">
-                                manage users
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-2">manage users</a>
+                                    <div id="submenu-1" class="collapse submenu" style="">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('view_users') }}">view users <span class="badge badge-secondary">New</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('create_user') }}">create users</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            @endif
 
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-2">manage users</a>
-                                <div id="submenu-1" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="cards.html">view users <span class="badge badge-secondary">New</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="general.html">create users</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </nav>
             </div>
             </div>
-
-                @yield('content')
             
+                @yield('content')
                 <!-- ============================================================== -->
                 <!-- footer -->
                 <!-- ============================================================== -->
@@ -141,7 +147,9 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
-                                Copyright © 2019. All rights reserved. App by ...Mwangaza IT
+                                Copyright © 2019. All rights reserved
+                                    <br>
+                                Mwangaza IT...powered by mitochondria 
                             </div>
                             
                         </div>
@@ -160,6 +168,26 @@
     <script src="{{ asset('../assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('../assets/vendor/slimscroll/jquery.slimscroll.js') }}"></script>
     <script src="{{ asset('../assets/libs/js/main-js.js') }}"></script>
+    <script src="{{ asset ('assets/vendor/summernote/js/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 300
+
+            });
+        });
+
+        @if(Session::has('success'))
+            toastr.success("{{Session::get('success')}}")
+        @endif
+        @if(Session::has('info'))
+            toastr.info("{{Session::get('info')}}")
+        @endif
+        @if(Session::has('warning'))
+            toastr.warning("{{Session::get('warning')}}")
+        @endif
+    </script>
 </body>
  
 </html>

@@ -155,111 +155,6 @@
 						@endforeach
 						</div>
 						<!-- /row -->
-						<!-- row -->
-						<div class="row">
-							<!-- Column 1 -->
-							<div class="col-md-6 col-sm-6">
-								<!-- section title -->
-								<div class="section-title">
-									<h2 class="title">{{ $second_category->name }}</h2>
-								</div>
-								<!-- /section title -->
-								@foreach($second_category->posts->sortKeysDesc()->take(1) as $post)
-								<!-- ARTICLE -->
-								<article class="article">
-									<div class="article-img">
-										<a href="#">
-											<img src="{{ $post->featured_image }}" alt="{{ $post->featured_image }}">
-										</a>
-										<ul class="article-info">
-											<li class="article-type"><i class="fa fa-camera"></i></li>
-										</ul>
-									</div>
-									<div class="article-body">
-										<h3 class="article-title"><a href="#">{{ $post->title }}</a></h3>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> {{ $post->created_at->toFormattedDateString()}}</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-										<p>Populo tritani laboramus ex mei, no eum iuvaret ceteros euripidis, ne alia sadipscing mei. Te inciderint cotidieque pro, ei iisque docendi qui, ne accommodare theophrastus reprehendunt vel. Et commodo menandri eam.</p>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-								@endforeach
-								
-								@foreach($second_category->posts->sortKeysDesc()->slice(1)->take(2) as $post)
-								<!-- ARTICLE -->
-								<article class="article widget-article">
-									<div class="article-img">
-										<a href="#">
-											<img src="{{ $post->featured_image }}" alt="">
-										</a>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">{{$post->title}}</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> {{ $post->created_at->toFormattedDateString()}}</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-								@endforeach
-							</div>
-							<!-- /Column 1 -->
-							
-							<!-- Column 2 -->
-							<div class="col-md-6 col-sm-6">
-								<!-- section title -->
-								<div class="section-title">
-									<h2 class="title">{{ $third_category->name }}</h2>
-								</div>
-								<!-- /section title -->
-								@foreach($third_category->posts->sortKeysDesc()->take(1) as $post)
-								<!-- ARTICLE -->
-								<article class="article">
-									<div class="article-img">
-										<a href="#">
-											<img src="{{ $post->featured_image}}" alt="">
-										</a>
-										<ul class="article-info">
-											<li class="article-type"><i class="fa fa-file-text"></i></li>
-										</ul>
-									</div>
-									<div class="article-body">
-										<h3 class="article-title"><a href="#">{{ $post->title }}</a></h3>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i>{{ $post->created_at->toFormattedDateString()}}</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-										<p>sdhghdgsjhd</p>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-								@endforeach
-								
-								@foreach($third_category->posts->sortKeysDesc()->slice(1)->take(2) as $post)
-								<!-- ARTICLE -->
-								<article class="article widget-article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-widget-9.jpg" alt="">
-										</a>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">{{ $post->title }}</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o">{{ $post->created_at->toFormattedDateString()}}</i></li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-								@endforeach
-							</div>
-							<!-- /Column 2 -->
-						</div>
-						<!-- /row -->		
 					</div>
 					<!-- /Main Column -->
 					
@@ -280,119 +175,11 @@
 						<!-- /social widget -->
 						
 						<!-- subscribe widget -->
-						<div class="widget subscribe-widget">
-							<div class="widget-title">
-								<h2 class="title">Subscribe to Newslatter</h2>
-							</div>
-							<form>
-								<input class="input" type="email" placeholder="Enter Your Email">
-								<button class="input-btn">Subscribe</button>
-							</form>
+						<div class="widget">
+							<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMwangazawanenofm%2F&tabs=timeline&width=340&height=1000&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 						</div>
 						<!-- /subscribe widget -->
 						
-						<!-- article widget -->
-						<div class="widget">
-							<div class="widget-title">
-								<h2 class="title">Most Read</h2>
-							</div>
-							
-							<!-- owl carousel 3 -->
-							<div id="owl-carousel-3" class="owl-carousel owl-theme center-owl-nav">
-								<!-- ARTICLE -->
-								<article class="article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-md-3.jpg" alt="">
-										</a>
-										<ul class="article-info">
-											<li class="article-type"><i class="fa fa-file-text"></i></li>
-										</ul>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-								
-								<!-- ARTICLE -->
-								<article class="article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-md-4.jpg" alt="">
-										</a>
-										<ul class="article-info">
-											<li class="article-type"><i class="fa fa-file-text"></i></li>
-										</ul>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-							</div>
-							<!-- /owl carousel 3 -->
-							
-							<!-- ARTICLE -->
-							<article class="article widget-article">
-								<div class="article-img">
-									<a href="#">
-										<img src="./img/img-widget-1.jpg" alt="">
-									</a>
-								</div>
-								<div class="article-body">
-									<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-									<ul class="article-meta">
-										<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-										<li><i class="fa fa-comments"></i> 33</li>
-									</ul>
-								</div>
-							</article>
-							<!-- /ARTICLE -->
-							
-							<!-- ARTICLE -->
-							<article class="article widget-article">
-								<div class="article-img">
-									<a href="#">
-										<img src="./img/img-widget-2.jpg" alt="">
-									</a>
-								</div>
-								<div class="article-body">
-									<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-									<ul class="article-meta">
-										<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-										<li><i class="fa fa-comments"></i> 33</li>
-									</ul>
-								</div>
-							</article>
-							<!-- /ARTICLE -->
-							
-							<!-- ARTICLE -->
-							<article class="article widget-article">
-								<div class="article-img">
-									<a href="#">
-										<img src="./img/img-widget-3.jpg" alt="">
-									</a>
-								</div>
-								<div class="article-body">
-									<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-									<ul class="article-meta">
-										<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-										<li><i class="fa fa-comments"></i> 33</li>
-									</ul>
-								</div>
-							</article>
-							<!-- /ARTICLE -->
-						</div>
-						<!-- /article widget -->
 					</div>
 					<!-- /Aside Column -->
 				</div>
@@ -401,7 +188,117 @@
 			<!-- /CONTAINER -->
 		</div>
 		<!-- /SECTION -->
-	
+		<div class="container section">
+			<!-- row -->
+			<div class="row">
+				<!-- Column 1 -->
+				<div class="col-md-6 col-sm-6">
+					@if($second_category->posts->count() > 0)
+					<!-- section title -->
+					<div class="section-title">
+						<h2 class="title">{{ $second_category->name }}</h2>
+					</div>
+					<!-- /section title -->
+					@foreach($second_category->posts->sortKeysDesc()->take(1) as $post)
+					<!-- ARTICLE -->
+					<article class="article">
+						<div class="article-img">
+							<a href="#">
+								<img src="{{ $post->featured_image }}" alt="{{ $post->featured_image }}">
+							</a>
+							<ul class="article-info">
+								<li class="article-type"><i class="fa fa-camera"></i></li>
+							</ul>
+						</div>
+						<div class="article-body">
+							<h3 class="article-title"><a href="#">{{ $post->title }}</a></h3>
+							<ul class="article-meta">
+								<li><i class="fa fa-clock-o"></i> {{ $post->created_at->toFormattedDateString()}}</li>
+								<li><i class="fa fa-comments"></i> 33</li>
+							</ul>
+							<p>Populo tritani laboramus ex mei, no eum iuvaret ceteros euripidis, ne alia sadipscing mei. Te inciderint cotidieque pro, ei iisque docendi qui, ne accommodare theophrastus reprehendunt vel. Et commodo menandri eam.</p>
+						</div>
+					</article>
+					<!-- /ARTICLE -->
+					@endforeach
+					
+					@foreach($second_category->posts->sortKeysDesc()->slice(1)->take(2) as $post)
+					<!-- ARTICLE -->
+					<article class="article widget-article">
+						<div class="article-img">
+							<a href="#">
+								<img src="{{ $post->featured_image }}" alt="">
+							</a>
+						</div>
+						<div class="article-body">
+							<h4 class="article-title"><a href="#">{{$post->title}}</a></h4>
+							<ul class="article-meta">
+								<li><i class="fa fa-clock-o"></i> {{ $post->created_at->toFormattedDateString()}}</li>
+								<li><i class="fa fa-comments"></i> 33</li>
+							</ul>
+						</div>
+					</article>
+					<!-- /ARTICLE -->
+					@endforeach
+					@endif
+				</div>
+				<!-- /Column 1 -->
+				
+				<!-- Column 2 -->
+				<div class="col-md-6 col-sm-6">
+				@if($third_category->posts->count() > 0)
+					<!-- section title -->
+					<div class="section-title">
+						<h2 class="title">{{ $third_category->name }}</h2>
+					</div>
+					<!-- /section title -->
+					@foreach($third_category->posts->sortKeysDesc()->take(1) as $post)
+					<!-- ARTICLE -->
+					<article class="article">
+						<div class="article-img">
+							<a href="#">
+								<img src="{{ $post->featured_image}}" alt="">
+							</a>
+							<ul class="article-info">
+								<li class="article-type"><i class="fa fa-file-text"></i></li>
+							</ul>
+						</div>
+						<div class="article-body">
+							<h3 class="article-title"><a href="#">{{ $post->title }}</a></h3>
+							<ul class="article-meta">
+								<li><i class="fa fa-clock-o"></i>{{ $post->created_at->toFormattedDateString()}}</li>
+								<li><i class="fa fa-comments"></i> 33</li>
+							</ul>
+							<p>sdhghdgsjhd</p>
+						</div>
+					</article>
+					<!-- /ARTICLE -->
+					@endforeach
+				
+					@foreach($third_category->posts->sortKeysDesc()->slice(1)->take(2) as $post)
+					<!-- ARTICLE -->
+					<article class="article widget-article">
+						<div class="article-img">
+							<a href="#">
+								<img src="./img/img-widget-9.jpg" alt="">
+							</a>
+						</div>
+						<div class="article-body">
+							<h4 class="article-title"><a href="#">{{ $post->title }}</a></h4>
+							<ul class="article-meta">
+								<li><i class="fa fa-clock-o">{{ $post->created_at->toFormattedDateString()}}</i></li>
+								<li><i class="fa fa-comments"></i> 33</li>
+							</ul>
+						</div>
+					</article>
+					<!-- /ARTICLE -->
+					@endforeach
+				@endif
+				</div>
+				<!-- /Column 2 -->
+			</div>
+			<!-- /row -->	
+		</div>	
 		<!-- SECTION -->
 		<div class="section">
 			<!-- CONTAINER -->

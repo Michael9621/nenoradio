@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
+use Auth;
+use Session;
 
 
 class PostController extends Controller
@@ -16,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('manage.posts.view')->with('posts', Post::all());
+        return view('manage.posts.view')->with('posts', Post::paginate(10));
     }
 
     /**
@@ -26,7 +28,13 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('manage.posts.create')->with('categories', Category::all());
+        if(Category::count() > 0){
+            return view('manage.posts.create')->with('categories', Category::all());
+        }else{
+            Session::flash('warning', 'posts cannot be created, categories missing');
+            return redirect()->back();
+        }
+        
     }
 
     /**
@@ -42,16 +50,20 @@ class PostController extends Controller
         $featured_new_name = time().$featured->getClientOriginalName();
 
         $featured->move('uploads/posts', $featured_new_name);
-
+        
         $post = Post::create([
             "title" => $request->title,
             "featured_image" => 'uploads/posts/'.$featured_new_name,
             "category_id" => $request->category,
             "content"=> $request->content,
+            "draft" => $request->draft,
+            "user_id" => Auth::user()->id,
             "slug"=>str_slug($request->title)
 
         ]);
-        
+
+        Session::flash('success', 'you created a new post');
+
         return redirect()->route('view_posts');
     }
 
@@ -92,6 +104,9 @@ class PostController extends Controller
 
         if ($request->hasFile('featured'))
         {
+            if(file_exists($post->featured_image)){
+                unlink($post->featured_image);
+            }
             $featured= $request->featured;
             $featured_new_name = time() . $featured->getClientOriginalName();
             $featured->move('uploads/posts', $featured_new_name);
@@ -100,8 +115,11 @@ class PostController extends Controller
 
         $post->title = $request->title;
         $post->category_id = $request->category;
+        $post->user_id = Auth::user()->id;
         $post->content = $request->content;
         $post->save();
+
+        Session::flash('success', 'you updated a post');
 
         return redirect()->route('view_posts');
     }
@@ -116,6 +134,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
+        Session::flash('success', 'you trashed a post');
         return redirect()->route('view_posts');
     }
 
@@ -127,12 +146,18 @@ class PostController extends Controller
     public function restore($id){
        $post  = Post::withTrashed()->where('id',$id)->first();
        $post->restore(); 
+       Session::flash('success', 'you restored post');
        return redirect()->route('view_posts');
     }
 
     Public function kill($id){
       $post  = Post::withTrashed()->where('id',$id)->first();
+      //dd($post->featured_image);
+      if(file_exists($post->featured_image)){
+          unlink($post->featured_image);
+      }
       $post->forceDelete();
+      Session::flash('success', 'you deleted a post');
       return redirect()->route('trashed_posts');
     }
 }

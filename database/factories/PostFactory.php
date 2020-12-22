@@ -5,6 +5,7 @@
 use App\Post;
 use App\Category;
 use Faker\Generator as Faker;
+use App\User;
 
 $factory->define(Post::class, function (Faker $faker) {
     return [
@@ -12,8 +13,12 @@ $factory->define(Post::class, function (Faker $faker) {
         'featured_image' => $faker->imageUrl(),
         'category_id'=> function(){
     		return Category::all()->random();
-    	},
+        },
+        'user_id'=> function(){
+    		  return User::all()->random();
+    	  },
         'content' => $faker->text,
-        'slug' => str_slug($faker->word)
+        'slug' => str_slug($faker->word),
+        'draft' => $faker->boolean($chanceOfGettingTrue = 50) 
     ];
 });
